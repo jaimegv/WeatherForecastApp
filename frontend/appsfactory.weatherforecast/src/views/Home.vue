@@ -1,28 +1,22 @@
 <template>
   <div class="main">
-    <div class="span3 top1">
-      <div class="row">
-        <div class="span3 headerImg">
-          <img src="../assets/nasa.jpg" />
-        </div>
-      </div>
+    <div class="span3 headerImg">
+      <img src="../assets/umbrella.jpg" />
     </div>
     <div class="span3 imageCaption">
       Photo by
       <a
-        href="https://unsplash.com/@nasa?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+        target="_blank" rel="noopener noreferrer" href="https://unsplash.com/@wimvanteinde?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
       >
-        NASA
+        Wim van 't Einde
       </a>
       on
       <a
-        href="https://unsplash.com/collections/8350737/weather-forecast?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+        target="_blank" rel="noopener noreferrer" href="https://unsplash.com/collections/8350737/weather-forecast?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
       >
         Unsplash
       </a>
     </div>
-
-    <!--img alt="Vue logo" src="../assets/nasa2.jpg" /-->
     <WeatherForecastMain />
   </div>
 </template>
@@ -43,10 +37,19 @@ export default class Home extends Vue {}
   width: 100%;
   height: 130px;
 }
+.footerImg img {
+  width: 100%;
+  height: 130px;
+}
 .imageCaption {
   height: 30px;
   font-size: 11px;
   text-align: right;
+}
+.footer { /* change selector otherwise this will select all bootstrap .col-sm-7.col-md-7 */
+position: absolute; 
+bottom: 0px; 
+right: 0px;
 }
 </style>
 
