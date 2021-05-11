@@ -91,13 +91,9 @@ export default defineComponent({
   methods: {
     formatDate(date: Date): string {
       if (date) {
-        console.log("antes:" + date);
         var localTime = moment.utc(date).toDate();
-        console.log("despues:" + localTime);
         var dayName = moment(String(localTime)).format("dddd");
-        console.log("dayName:" + dayName);
         var formattedDate = moment(String(localTime)).format("DD.MM.yyyy");
-        console.log("dayName:" + formattedDate);
         return dayName + " " + formattedDate;
       } else {
         return "";
