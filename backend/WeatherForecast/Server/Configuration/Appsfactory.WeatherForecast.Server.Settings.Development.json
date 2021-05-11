@@ -1,0 +1,26 @@
+{
+  "Serilog": {
+    "Using": [ "Serilog.Sinks.Console", "Serilog.Sinks.File" ],
+    "MinimumLevel": "Debug",
+    "Override": {
+      "Microsoft": "Warning",
+      "System": "Warning"
+    },
+    "WriteTo": [
+      { "Name": "Console" },
+      {
+        "Name": "File",
+        "Args": {
+          "path": "Logs/Appsfactory.WeatherForecast.Server.Server.Log-.txt",
+          "rollingInterval": "Day"
+        }
+      }
+    ]
+  },
+  "ExternalWeatherApiConfiguration": {
+    "ApiKey": "fcadd28326c90c3262054e0e6ca599cd",
+    "Url": "http://api.openweathermap.org/data/2.5/forecast",
+    "Units": "metric",
+    "CountryCode":  "DE"
+  }
+}
