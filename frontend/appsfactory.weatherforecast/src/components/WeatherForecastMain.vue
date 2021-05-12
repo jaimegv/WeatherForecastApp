@@ -149,7 +149,7 @@ export default defineComponent({
       if(todatyData) {
         store.dispatch("addSearchHistoryEntry", new SearchHistoryEntry(value, todatyData.temperature, todatyData.humidity));
       }
-    },    
+    },
   },
 });
 </script>
