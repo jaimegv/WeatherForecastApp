@@ -168,6 +168,12 @@ nav li.router-link-exact-active {
 #nav a{
   color: blue;
 }
+button, input{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
 </style>
 
 
