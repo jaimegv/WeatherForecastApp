@@ -135,7 +135,13 @@ export default defineComponent({
           }
         })
         .catch((error) => {
-          alert(error.response.data);
+          if(error.response.status === 404)
+          {
+            alert("Not found: " + value);
+          }
+          else{
+            alert("Fail, try it later ;)");
+          }
         });
     },
     storeSearchHistoryEntry(value: string) {

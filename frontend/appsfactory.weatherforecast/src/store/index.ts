@@ -16,7 +16,7 @@ export default createStore({
       context.commit("addSearchHistoryEntry", searchHistoryEntry);
     }
   },
-  modules: {
+  modules: {    
   },
   plugins: [new VuexPersistence().plugin],
 })
