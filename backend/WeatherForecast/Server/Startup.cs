@@ -1,4 +1,3 @@
-using AutoMapper.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -10,10 +9,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using System.Net.Http;
-using Polly;
-using Polly.Extensions.Http;
 using Appsfactory.WeatherForecast.SharedTypes.Contracts;
 using Appsfactory.WeatherForecast.SharedTypes.Configuration;
 using Appsfactory.OpenWeatherForecastService.Services;
@@ -35,7 +30,6 @@ namespace Appsfactory.WeatherForecast.Server
             services.AddControllers()
                     .AddJsonOptions(opts =>
                         {
-                            opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                             opts.JsonSerializerOptions.Converters.Add(new JsonDateTimeConverter());
                         });
 
@@ -73,7 +67,6 @@ namespace Appsfactory.WeatherForecast.Server
             {
                 app.UseDeveloperExceptionPage();
             }
-            //app.UseHttpsRedirection();
             app.UseRouting();
             app.UseCors(CorsPolicyName);
 

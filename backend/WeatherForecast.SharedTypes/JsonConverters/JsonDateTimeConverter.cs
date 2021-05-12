@@ -17,7 +17,7 @@ namespace Appsfactory.WeatherForecast.SharedTypes.JsonConverters
 
         public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(value.ToUniversalTime());//.ToLocalTime().ToString("dd.MM.yyyyTHH:mm:ss"));
+            writer.WriteStringValue(value.ToUniversalTime());
         }
     }
 }
