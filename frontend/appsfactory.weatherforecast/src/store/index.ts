@@ -1,5 +1,6 @@
-import { createStore } from 'vuex'
-import SearchHistoryEntry from './SearchHistoryEntry'
+import { createStore } from "vuex";
+import SearchHistoryEntry from "./SearchHistoryEntry";
+import VuexPersistence from "vuex-persist";
 
 export default createStore({
   state: {
@@ -16,5 +17,6 @@ export default createStore({
     }
   },
   modules: {
-  }
+  },
+  plugins: [new VuexPersistence().plugin],
 })
