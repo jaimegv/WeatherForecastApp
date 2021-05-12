@@ -28,24 +28,27 @@ namespace Appsfactory.OpenWeatherForecastService.Services
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
-        public async Task<WeatherForecastResponse> GetJsonWeatherForecastDataByCity(string city)
+        public async Task<WeatherForecastResponse> GetRawWeatherForecastDataByCity(string city)
         {
+            _logger.LogDebug($"{nameof(GetRawWeatherForecastDataByCity)} - {city} called");
             var query = GetBaseQueryString();
-            query["q"] = $"{city},{_weatherServiceConfiguration.CountryCode}";
-            //query["q"] = city;
+            query["q"] = $"{city}{GetCountryFlagIfExist()}";
             var jsonData = await _httpClient.GetStringAsync($"?{query.ToString()}");
             return ConvertJsonToWeatherForecastData(jsonData);
         }
 
-        public async Task<WeatherForecastResponse> GetJsonWeatherForecastDataByZipCode(string zipCode)
+        public async Task<WeatherForecastResponse> GetRawWeatherForecastDataByZipCode(string zipCode)
         {
+            _logger.LogDebug($"{nameof(GetRawWeatherForecastDataByZipCode)} - {zipCode} called");
             var query = GetBaseQueryString();
-            query["zip"] = $"{zipCode},{_weatherServiceConfiguration.CountryCode}";
-            string queryString = query.ToString();
+            query["zip"] = $"{zipCode}{GetCountryFlagIfExist()}";
             var jsonData = await _httpClient.GetStringAsync($"?{query.ToString()}");
-
             return ConvertJsonToWeatherForecastData(jsonData);
         }
+
+        private string GetCountryFlagIfExist() =>
+            string.IsNullOrEmpty(_weatherServiceConfiguration.CountryCode) ?
+                "" : $",{_weatherServiceConfiguration.CountryCode}";
 
         private System.Collections.Specialized.NameValueCollection GetBaseQueryString()
         {

@@ -52,7 +52,7 @@ namespace Appsfactory.WeatherForecast.Server.UnitTest
             //arrange
             var loggerMock = new Mock<ILogger<WeatherForecastDataProvider>>();
             var getIWeatherForecastDataProviderClientMock = new Mock<IWeatherForecastDataProviderClient>();
-            getIWeatherForecastDataProviderClientMock.Setup(w => w.GetJsonWeatherForecastDataByCity(cityName))
+            getIWeatherForecastDataProviderClientMock.Setup(w => w.GetRawWeatherForecastDataByCity(cityName))
                 .ReturnsAsync(new WeatherForecastResponse());
 
             var sut = new WeatherForecastDataProvider(loggerMock.Object, getIWeatherForecastDataProviderClientMock.Object);
@@ -74,7 +74,7 @@ namespace Appsfactory.WeatherForecast.Server.UnitTest
             //arrange
             var loggerMock = new Mock<ILogger<WeatherForecastDataProvider>>();
             var getIWeatherForecastDataProviderClientMock = new Mock<IWeatherForecastDataProviderClient>();
-            getIWeatherForecastDataProviderClientMock.Setup(w => w.GetJsonWeatherForecastDataByCity(cityName))
+            getIWeatherForecastDataProviderClientMock.Setup(w => w.GetRawWeatherForecastDataByCity(cityName))
                 .ReturnsAsync(GetOneDayWeatherForecastResponse());
             
             var sut = new WeatherForecastDataProvider(loggerMock.Object, getIWeatherForecastDataProviderClientMock.Object);
@@ -103,7 +103,7 @@ namespace Appsfactory.WeatherForecast.Server.UnitTest
             //arrange
             var loggerMock = new Mock<ILogger<WeatherForecastDataProvider>>();
             var getIWeatherForecastDataProviderClientMock = new Mock<IWeatherForecastDataProviderClient>();
-            getIWeatherForecastDataProviderClientMock.Setup(w => w.GetJsonWeatherForecastDataByCity(cityName))
+            getIWeatherForecastDataProviderClientMock.Setup(w => w.GetRawWeatherForecastDataByCity(cityName))
                 .ReturnsAsync(GetTwoDaysWeatherForecastResponse());
 
             var sut = new WeatherForecastDataProvider(loggerMock.Object, getIWeatherForecastDataProviderClientMock.Object);

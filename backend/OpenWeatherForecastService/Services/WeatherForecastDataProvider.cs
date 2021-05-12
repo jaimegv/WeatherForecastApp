@@ -28,26 +28,29 @@ namespace Appsfactory.OpenWeatherForecastService.Services
 
         public async Task<IEnumerable<WeatherForecastDto>> GetWeatherForecastDataByCity(string city)
         {
+            _logger.LogDebug($"{nameof(GetWeatherForecastDataByCity)} - {city} called");
+            
             if (string.IsNullOrEmpty(city))
             {
                 _logger.LogError($"City param is null or empty {nameof(city)}");
             }
-            return await GetWeatherForecastData(() => _weatherForecastDataProviderClient.GetJsonWeatherForecastDataByCity(city));
+            return await GetWeatherForecastData(() => _weatherForecastDataProviderClient.GetRawWeatherForecastDataByCity(city));
         }
 
 
         public async Task<IEnumerable<WeatherForecastDto>> GetWeatherForecastDataByZipCode(string zipCode)
         {
+            _logger.LogDebug($"{nameof(GetWeatherForecastDataByZipCode)} - {zipCode} called");
+            
             if (string.IsNullOrEmpty(zipCode))
             {
                 _logger.LogError($"ZipCode param is null or empty {nameof(zipCode)}");
             }
-            return await GetWeatherForecastData(() => _weatherForecastDataProviderClient.GetJsonWeatherForecastDataByZipCode(zipCode));
+            return await GetWeatherForecastData(() => _weatherForecastDataProviderClient.GetRawWeatherForecastDataByZipCode(zipCode));
         }
 
-        private IEnumerable<WeatherForecastDto> ConvertToDailyWeatherForecastData(WeatherForecastResponse weatherForecastResponse)
-        {
-            return weatherForecastResponse.Items
+        private IEnumerable<WeatherForecastDto> ConvertToDailyWeatherForecastData(WeatherForecastResponse weatherForecastResponse) =>
+            weatherForecastResponse.Items
                 .GroupBy(i => i.ForecastDateTime.Date)
                 .Select(i => new WeatherForecastDto
                 { 
@@ -56,7 +59,6 @@ namespace Appsfactory.OpenWeatherForecastService.Services
                     Humidity = Math.Round(i.Average(x => x.Info.Humidity), 0),
                     WindSpeed = Math.Round(i.Average(x => x.WindInfo.Speed), 2)
                 });
-        }
 
         private async Task<IEnumerable<WeatherForecastDto>> GetWeatherForecastData(Func<Task<WeatherForecastResponse>> getWeatherForecastDataFromSource)
         {
@@ -80,6 +82,5 @@ namespace Appsfactory.OpenWeatherForecastService.Services
             }
             return result;
         }
-
     }
 }
