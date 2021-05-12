@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <h1>Welcome to the Weather Forecast App</h1>
+    <h1>Germany cities Weather Forecast App</h1>
     <div class="container">
       <div class="row">
         <div class="col-sm">
@@ -135,8 +135,7 @@ export default defineComponent({
           }
         })
         .catch((error) => {
-          alert(error.message);
-          //console.error(error.message);
+          alert(error.response.data);
         });
     },
     storeSearchHistoryEntry(value: string) {
