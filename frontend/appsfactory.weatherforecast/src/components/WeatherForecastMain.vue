@@ -163,7 +163,7 @@ export default defineComponent({
 nav li:hover,
 nav li.router-link-active,
 nav li.router-link-exact-active {
-  cursor: pointer; 
+  cursor: pointer;
 }
 #nav a{
   color: blue;
